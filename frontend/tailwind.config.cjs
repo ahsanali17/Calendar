@@ -3,10 +3,18 @@ module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    "./public/index.html"
+    "./public/index.html",
+    "*"
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["Open Sans"]
+      },
+      grisTemplatesColumns: {
+        "1/5": "1fr 5fr"
+      }
+    },
   },
   variants: {
     extend: {},
