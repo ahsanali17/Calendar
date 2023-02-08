@@ -11,6 +11,9 @@ import {
 
 // import Cell from "./Cell";
 import { getMonth } from "../../utils/calendar";
+import CalendarHeader from "./CalendarHeader/CalendarHeader";
+import { Month } from "../Month";
+import { Sidebar } from "../Sidebar";
 
 const Calendar = () => {
  const [currentMonth, setCurrentMonth] = useState(getMonth())
@@ -19,12 +22,11 @@ const Calendar = () => {
  return (
   <>
    <div className="h-screen flex flex-columns">
-    {/* <CalendarHeader /> */}
+    <CalendarHeader />
     <div className="flex flex-1">
-     {/* <Sidebar /> */}
-     {/* <Month /> */}
+     <Sidebar />
+     <Month month={currentMonth} />
     </div>
-
    </div>
   </>
  )
