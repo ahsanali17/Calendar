@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
  add,
  differenceInDays,
@@ -8,13 +9,12 @@ import {
  sub,
 } from "date-fns";
 
-import Cell from "./Cell";
+// import Cell from "./Cell";
 import { getMonth } from "../../utils/calendar";
 
-
 const Calendar = () => {
- const calendarMonths = getMonth();
- console.log(calendarMonths)
+ const [currentMonth, setCurrentMonth] = useState(getMonth())
+
 
  return (
   <>

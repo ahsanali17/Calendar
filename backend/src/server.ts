@@ -5,6 +5,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import MongoStore from 'connect-mongo';
 import passport from 'passport';
+import { renderPage } from 'vite-plugin-ssr'
 
 import Logging from './Library/Logging';
 import {config} from './config/index';

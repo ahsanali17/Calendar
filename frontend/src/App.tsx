@@ -9,7 +9,7 @@ const App = () => {
   const handleSetToday = () => setCurrentDate(new Date());
 
   return (
-    <div className="mt-16 flex flex-col items-center gap-8">
+    <div>
       <div className="flex flex-col items-center gap-4">
         <p>
           <strong>Selected Date: </strong>
