@@ -8,7 +8,7 @@ const SmallCalendar = () => {
  const [ currentMonthIdx, setCurrentMonthIdx ] = useState(dayjs().month())
  const [ currentMonth, setCurrentMonth ] = useState(getMonth())
 
- const { monthIndex } = useCalendarContext();
+ const { monthIndex, setSmallCalendarMonth, selectedDay, setSelectedDay } = useCalendarContext();
 
  const handlePrevMonth = () => {
   setCurrentMonthIdx(currentMonthIdx - 1);
@@ -19,11 +19,14 @@ const SmallCalendar = () => {
  }
 
  function getDayClass(day: any) {
-  const format = "DD-MM-YY";
-  const getDate = dayjs().format(format);
-  const currentDay = day.format(format);
+  const format: string = "DD-MM-YY";
+  const getDate: string = dayjs().format(format);
+  const currentDay: string = day.format(format);
+  const userSelectedDay: string = selectedDay && selectedDay.format(format)
   if(getDate === currentDay) {
     return "bg-blue-500 rounded-full text-white";
+  } else if(currentDay === userSelectedDay) {
+    return "bg-blue-100 rounded-full text-blue-600 font-bold"
   } else {
     return "";
   }
@@ -67,10 +70,10 @@ const SmallCalendar = () => {
               {row.map((day, idx) => (
                 <button
                   key={idx}
-                  // onClick={() => {
-                  //   setSmallCalendarMonth(currentMonthIdx);
-                  //   setDaySelected(day);
-                  // }}
+                  onClick={() => {
+                    setSmallCalendarMonth(currentMonthIdx);
+                    setSelectedDay(day);
+                  }}
                   className={`py-1 w-full ${getDayClass(day)}`}
                 >
                   <span className="text-sm">{day.format("D")}</span>
