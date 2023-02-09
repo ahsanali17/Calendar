@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext, useEffect} from "react";
 import {
  add,
  differenceInDays,
@@ -9,14 +9,20 @@ import {
  sub,
 } from "date-fns";
 
-// import Cell from "./Cell";
-import { getMonth } from "../../utils/calendar";
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
 import { Month } from "../Month";
 import { Sidebar } from "../Sidebar";
 
+import { getMonth } from "../../utils/calendar";
+import { useCalendarContext } from '../../context/CalendarContext/CalendarContext';
+
 const Calendar = () => {
  const [currentMonth, setCurrentMonth] = useState(getMonth())
+ const { monthIndex } = useCalendarContext()
+
+ useEffect(() => {
+  setCurrentMonth(getMonth(monthIndex))
+ }, [monthIndex])
 
  return (
    <div className="h-screen flex flex-col">

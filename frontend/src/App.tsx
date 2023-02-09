@@ -1,4 +1,5 @@
 import {Calendar} from "./components/Calendar/index";
+import CalendarContextWrapper from "./context/CalendarContext/CalendarContext";
 
 const App = () => {
   return (
@@ -8,7 +9,9 @@ const App = () => {
           {format(currentDate, "dd LLLL yyyy")}
         </p>
         <Button onClick={handleSetToday}>Today</Button> */}
-      <Calendar />
+      <CalendarContextWrapper>
+        <Calendar />
+      </CalendarContextWrapper>
     </>
   );
 };

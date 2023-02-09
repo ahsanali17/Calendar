@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { Dispatch, SetStateAction } from "react";
 
 export type ContextProps = {
@@ -6,5 +7,5 @@ export type ContextProps = {
 
 export type ContextObjectValue = {
  monthIndex: number,
- setMonthIndex: Dispatch<SetStateAction<number>> | VoidFunction;
+ setMonthIndex: Dispatch<SetStateAction<number>>;
 }
