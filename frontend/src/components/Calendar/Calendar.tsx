@@ -28,7 +28,7 @@ const Calendar = () => {
    <div className="h-screen flex flex-col">
     <CalendarHeader />
     <div className="flex flex-1">
-     {/* <Sidebar /> */}
+     <Sidebar />
      <Month month={currentMonth} />
     </div>
    </div>
