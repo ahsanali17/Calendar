@@ -10,7 +10,7 @@ import {
 } from "date-fns";
 
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
-import { Month } from "../Month";
+import { Month } from "./Month";
 import { Sidebar } from "../Sidebar";
 
 import { getMonth } from "../../utils/calendar";

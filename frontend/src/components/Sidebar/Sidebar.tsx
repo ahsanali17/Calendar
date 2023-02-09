@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {CreateEventButton} from '../CreateEventButton'
+import {CreateEventButton} from './CreateEventButton'
 
 export default function Sidebar() {
   return (

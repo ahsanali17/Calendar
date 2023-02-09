@@ -1,6 +1,6 @@
 import React from "react";
 
-import plusIcon from '../../assets/plusIcon.svg';
+import plusIcon from '../../../assets/plusIcon.svg';
 
 const CreateEventButton = () => {
   return (
