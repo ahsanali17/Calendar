@@ -8,7 +8,7 @@ const Month = ({month} : any) => {
    {month.map((row: any, i: number) => (
     <Fragment key={i}>
       {row.map((day: any, idx: number) => (
-       <Day day={day} key={idx} rowIdx={idx}/>
+       <Day day={day} key={idx} rowIdx={i}/>
       ))}
     </Fragment>
    ))}
