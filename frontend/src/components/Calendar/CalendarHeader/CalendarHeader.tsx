@@ -4,11 +4,14 @@ import dayjs from 'dayjs';
 import logo from '../../../assets/logo.png';
 import { useCalendarContext } from '../../../context/CalendarContext/CalendarContext';
 
-export default function CalendarHeader() {
+const CalendarHeader = () => {
   const { monthIndex, setMonthIndex } = useCalendarContext()
+  const CurrentMonth = dayjs().month();
 
   const handleResetCalendar = () => {
-    setMonthIndex(dayjs().month());
+    setMonthIndex(monthIndex === CurrentMonth
+      ? monthIndex + Math.random()
+      : dayjs().month());
   }
 
   const handlePrevMonth = () => {
@@ -42,3 +45,5 @@ export default function CalendarHeader() {
     </header>
   )
 }
+
+export default CalendarHeader;

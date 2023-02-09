@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 
 export function getMonth(month: number = dayjs().month()) {
+ month = Math.floor(month);
  const year: number  = dayjs().year();
 
  const fristDayOfTheMonth = dayjs(new Date(year, month, 1)).day();
