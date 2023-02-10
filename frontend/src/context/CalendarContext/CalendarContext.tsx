@@ -8,7 +8,8 @@ const CalendarContext = createContext<ContextObjectValue>({} as ContextObjectVal
 export default function CalendarContextWrapper({ children }: ContextProps) {
   const [monthIndex, setMonthIndex] = useState(dayjs().month());
   const [smallCalendarMonth, setSmallCalendarMonth] = useState(0);
-  const [selectedDay, setSelectedDay ] = useState(0);
+  const [selectedDay, setSelectedDay ] = useState(dayjs());
+  const [showEventModal, setShowEventModal ] = useState(false);
 
   const defaultContextObject: ContextObjectValue = {
     monthIndex,
@@ -16,7 +17,9 @@ export default function CalendarContextWrapper({ children }: ContextProps) {
     smallCalendarMonth,
     setSmallCalendarMonth,
     selectedDay,
-    setSelectedDay
+    setSelectedDay,
+    showEventModal,
+    setShowEventModal
   };
 
   useEffect(() => {

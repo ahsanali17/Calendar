@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect} from "react";
+import { useState, useContext, useEffect, Fragment} from "react";
 import {
  add,
  differenceInDays,
@@ -15,23 +15,29 @@ import { Sidebar } from "../Sidebar";
 
 import { getMonth } from "../../utils/calendar";
 import { useCalendarContext } from '../../context/CalendarContext/CalendarContext';
+import CreateEventModal from "../CreateEventModal/CreateEventModal";
 
 const Calendar = () => {
- const [currentMonth, setCurrentMonth] = useState(getMonth())
- const { monthIndex } = useCalendarContext()
+ const [monthArray, setMonthArray] = useState(getMonth())
+ const { monthIndex, showEventModal } = useCalendarContext()
 
  useEffect(() => {
-  setCurrentMonth(getMonth(monthIndex))
+  setMonthArray(getMonth(monthIndex))
  }, [monthIndex])
 
  return (
-   <div className="h-screen flex flex-col">
-    <CalendarHeader />
-    <div className="flex flex-1">
-     <Sidebar />
-     <Month month={currentMonth} />
+  <Fragment>
+    {showEventModal && (
+      <CreateEventModal />
+    )}
+    <div className="h-screen flex flex-col">
+      <CalendarHeader />
+      <div className="flex flex-1">
+        <Sidebar />
+        <Month month={monthArray} />
+      </div>
     </div>
-   </div>
+  </Fragment>
  )
 };
 
