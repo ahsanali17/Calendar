@@ -1,21 +1,37 @@
 import React, { MouseEventHandler, useState } from 'react'
 import { useCalendarContext } from '../../context/CalendarContext/CalendarContext';
 
+type CalendarEventProps = {
+  title: string,
+  description: string,
+  label: string,
+  day: number,
+  id: number
+}
+
 const CreateEventModal = () => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const labelsClasses = ["indigo", "gray", "green", "blue", "red", "purple"];
   const [selectedLabel, setSelectedLabel] = useState('');
 
-  const {setShowEventModal, selectedDay, dispatchCallEvent} = useCalendarContext();
+  const {setShowEventModal, selectedDay, dispatchCallEvent, selectedEvent} = useCalendarContext();
 
-  const handleSubmit = (e: any) => {
+  function handleSubmit(e: any) {
     e.preventDefault();
-
-    const calendarEvent = {
-      title, description, label: selectedLabel, day: selectedDay.valueOf(), id: Date.now()
+    const calendarEvent: CalendarEventProps = {
+      title,
+      description,
+      label: selectedLabel,
+      day: selectedDay.valueOf(),
+      id: selectedEvent ? selectedEvent?.id : Date.now(),
+    };
+    if (selectedEvent) {
+      dispatchCallEvent({ type: "update", payload: calendarEvent });
+    } else {
+      dispatchCallEvent({ type: "push", payload: calendarEvent });
     }
-    dispatchCallEvent({type: 'push', payload: calendarEvent});
+
     setShowEventModal(false);
   }
 

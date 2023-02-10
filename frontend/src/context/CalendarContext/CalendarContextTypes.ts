@@ -15,6 +15,16 @@ export type ContextObjectValue = {
  setSelectedDay: Dispatch<SetStateAction<Dayjs>>;
  showEventModal: boolean,
  setShowEventModal: Dispatch<SetStateAction<boolean>>;
- dispatchCallEvent: Dispatch<ReducerAction<any>>,
- savedEvents: []
+ selectedEvent: null,
+ setSelectedEvent: (event: any) => void,
+ savedEvents: [],
+ dispatchCallEvent: Dispatch<ReducerAction<any>>;
+ labels: Label[],
+ updateLabel: (label: Label) => void
+ // filteredEvents: any[]
 }
+
+export type Label = {
+ label: string,
+ checked: boolean
+};
