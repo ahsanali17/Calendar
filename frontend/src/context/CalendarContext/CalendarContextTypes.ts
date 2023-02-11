@@ -16,15 +16,28 @@ export type ContextObjectValue = {
  showEventModal: boolean,
  setShowEventModal: Dispatch<SetStateAction<boolean>>;
  selectedEvent: null,
- setSelectedEvent: (event: any) => void,
+ setSelectedEvent: Dispatch<SetStateAction<null>>,
  savedEvents: [],
- dispatchCallEvent: Dispatch<ReducerAction<any>>;
+ dispatchCallEvent: Dispatch<Action>;
  labels: Label[],
  updateLabel: (label: Label) => void
- // filteredEvents: any[]
+ filteredEvents: any[]
 }
 
 export type Label = {
  label: string,
  checked: boolean
 };
+
+export type CalendarEventProps = {
+ title: string,
+ description: string,
+ label: string,
+ day: number,
+ id: number
+}
+
+type Action = {
+ type: string;
+ payload: CalendarEventProps
+}

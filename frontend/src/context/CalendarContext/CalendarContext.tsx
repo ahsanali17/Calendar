@@ -9,6 +9,7 @@ const CalendarContext = createContext<ContextObjectValue>({} as ContextObjectVal
 const initEvents = () => {
   const storageEvents = localStorage.getItem('savedEvents')
   const parsedEvents = storageEvents ? JSON.parse(storageEvents) : [];
+  console.log('parsedEvents', parsedEvents)
   return parsedEvents;
 }
 
@@ -21,14 +22,14 @@ export default function CalendarContextWrapper({ children }: ContextProps) {
   const [labels, setLabels] = useState<Label[]>([]);
   const [savedEvents, dispatchCallEvent] = useReducer(EventsReducer, [], initEvents)
 
-// const filteredEvents = useMemo(() => {
-//     return savedEvents.filter((evt: { label: any; }) =>
-//       labels
-//         .filter((lbl) => lbl.checked)
-//         .map((lbl) => lbl.label)
-//         .includes(evt.label)
-//     );
-//   }, [savedEvents, labels]);
+const filteredEvents = useMemo(() => {
+    return savedEvents.filter((evt: { label: any; }) =>
+      labels
+        .filter((lbl) => lbl.checked)
+        .map((lbl) => lbl.label)
+        .includes(evt.label)
+    );
+  }, [savedEvents, labels]);
 
   function updateLabel(label: Label) {
     setLabels(
@@ -51,7 +52,7 @@ export default function CalendarContextWrapper({ children }: ContextProps) {
     dispatchCallEvent,
     labels,
     updateLabel,
-    // filteredEvents
+    filteredEvents
   };
 
 
