@@ -5,17 +5,32 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import MongoStore from 'connect-mongo';
 import passport from 'passport';
-import { renderPage } from 'vite-plugin-ssr'
+// import { renderPage } from 'vite-plugin-ssr'
 
 import Logging from './Library/Logging';
 import {config} from './config/index';
-// import {routes} from './routes/index';
+import tokenRouter from './routes/getToken';
+import passportSetup from './config/passport';
 
 const Server: Application = express();
 
 const port: number = config.server.port;
 const CLIENT_URL: string = `http://localhost:${port}`;
 
+
+Server.use(
+	session({
+		secret: 'black cat',
+		resave: false,
+		saveUninitialized: false,
+		cookie: {maxAge: 3600000},
+		store: MongoStore.create({ mongoUrl: config.mongo.url })
+	})
+)
+
+Server.use(passport.initialize());
+Server.use(passport.session());
+passportSetup();
 
 /** Connect to MongoDB */
 mongoose
@@ -49,6 +64,7 @@ const StartServer = () => {
 
   // Cors Check
   Server.use(cors({ credentials: true, origin: CLIENT_URL }));
+		Server.use(cors())
 
 	// Rules of our API
 	Server.use((req: Request, res: Response, next: NextFunction) => {
@@ -66,7 +82,7 @@ const StartServer = () => {
   /** API ROUTES */
     // Routes
     // Server.use('/users', userRoutes);
-
+			Server.use('/getToken', tokenRouter)
 
     // Server API Check
     Server.get('/ping', (req: Request, res: Response) => {
